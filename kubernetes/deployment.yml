@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2021-08-28T19:56:49Z"
+  generation: 1
+  labels:
+    app: scope-closure-web
+  name: scope-closure-web
+  namespace: default
+  resourceVersion: "35818"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/scope-closure-web
+  uid: 9f9258d2-bef5-4d5f-8c18-da8e9b08ca97
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: scope-closure-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: scope-closure-web
+    spec:
+      containers:
+      - image: caprilespe/scope-closure-web:v1
+        imagePullPolicy: IfNotPresent
+        name: scope-closure-web
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2021-08-28T19:56:49Z"
+    lastUpdateTime: "2021-08-28T19:57:20Z"
+    message: ReplicaSet "scope-closure-web-7cbbf96b67" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2021-08-28T19:59:49Z"
+    lastUpdateTime: "2021-08-28T19:59:49Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  observedGeneration: 1
+  replicas: 1
+  unavailableReplicas: 1
+  updatedReplicas: 1
